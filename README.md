@@ -13,7 +13,7 @@ Additionally, the project explores the impact of different learning rates on tra
 ![image](https://github.com/Pattern-Recog/Simple-convolutional-neural-network-to-perform-classification/assets/68577937/a74c280f-6613-4462-81ff-539b14ab18ac)
 
 
-The CIFAR-10 dataset is a widely used benchmark in the field of computer vision and machine learning. It consists of 60,000 color images, each with dimensions of 32x32 pixels, distributed across 10 distinct classes. The dataset is designed for the task of object recognition and image classification, making it suitable for training and evaluating various machine learning models.
+The CIFAR-10 [https://www.cs.toronto.edu/~kriz/cifar.html] dataset is a widely used benchmark in the field of computer vision and machine learning. It consists of 60,000 color images, each with dimensions of 32x32 pixels, distributed across 10 distinct classes. The dataset is designed for the task of object recognition and image classification, making it suitable for training and evaluating various machine learning models.
 
 The ten classes in the CIFAR-10 dataset represent common objects and animals, including airplanes, automobiles, birds, cats, deer, dogs, frogs, horses, ships, and trucks. Each class contains 6,000 images, with a balanced distribution to ensure a diverse and representative set of examples for training and testing.
 
@@ -72,60 +72,56 @@ The data pre-processing tasks, particularly normalization and dataset splitting,
 
 ### Convolutional Layers:
 
-  1. Convolutional Layer 1:
-    - Input: 3 channels (RGB)
-     
-    - Output Channels: 32
+  **1. Convolutional Layer 1:**
+  - Input: 3 channels (RGB)
+  - Output Channels: 32
+  - Kernel Size: 5x5
+  - Stride: 1, Padding: 2
+  - Batch Normalization and **_ReLU Activation_**
     
-    - Kernel Size: 5x5
-    
-    - Stride: 1, Padding: 2
-    
-    - Batch Normalization and ReLU Activation
+  **2. Max Pooling Layer 1:**
+  - Kernel Size: 2x2
+  - Stride: 2
   
-  3. Max Pooling Layer 1:
-    - Kernel Size: 2x2
-    - Stride: 2
+  **3. Convolutional Layer 2:**
+  - Input Channels: 32
+  - Output Channels: 64
+  - Kernel Size: 5x5
+  - Stride: 1, Padding: 2
+  - Batch Normalization and **_ReLU Activation_**
   
-  4. Convolutional Layer 2:
-    - Input Channels: 32
-    - Output Channels: 64
-    - Kernel Size: 5x5
-    - Stride: 1, Padding: 2
-    - Batch Normalization and ReLU Activation
+  **4. Max Pooling Layer 2:**
+  - Kernel Size: 2x2
+  - Stride: 2
   
-  5. Max Pooling Layer 2:
-    - Kernel Size: 2x2
-    - Stride: 2
+  **5. Convolutional Layer 3:**
+  - Input Channels: 64
+  - Output Channels: 128
+  - Kernel Size: 5x5
+  - Stride: 1, Padding: 2
+  - Batch Normalization and **_ReLU Activation_**
   
-  6. Convolutional Layer 3:
-    - Input Channels: 64
-    - Output Channels: 128
-    - Kernel Size: 5x5
-    - Stride: 1, Padding: 2
-    - Batch Normalization and ReLU Activation
-  
-  7. Max Pooling Layer 3:
-    - Kernel Size: 2x2
-    - Stride: 2
+  **6. Max Pooling Layer 3:**
+  - Kernel Size: 2x2
+  - Stride: 2
 
 ### Fully Connected Layers:
 
-  1. Flatten Layer:
-    - Flattens the output from the last convolutional layer.
+  **1. Flatten Layer:**
+  - Flattens the output from the last convolutional layer.
   
-  2. Fully Connected Layer 1:
-    - Input Features: 2048
-    - Output Features: 64
-    - ReLU Activation, Dropout with probability 0.5
+  **2. Fully Connected Layer 1:**
+  - Input Features: 2048
+  - Output Features: 64
+  - **_ReLU Activation_**, Dropout with probability 0.5
 
      
 ### Output Layer:
 
-  1. Fully Connected Layer 2 (Output Layer):
-    - Input Features: 64
-    - Output Features: 10 (for 10 classes)
-    - SoftMax Activation for multiclass classification
+  **1. Fully Connected Layer 2 (Output Layer):**
+  - Input Features: 64
+  - Output Features: 10 (for 10 classes)
+  - **_SoftMax Activation_** for multiclass classification
 
 ### Model Parameters:
 - Convolutional Layer 1: 2464 parameters
@@ -134,8 +130,64 @@ The data pre-processing tasks, particularly normalization and dataset splitting,
 - Fully Connected Layer 1: 131136 parameters
 - Output Layer: 650 parameters
   
-The total number of learnable parameters in the entire CNN model is **390,634**. This summary provides an overview of the architectural choices and the parameterization of each layer in the SimpleCNN model.
+The total number of learnable parameters in the entire CNN model is **_390,634_**. This summary provides an overview of the architectural choices and the parameterization of each layer in the SimpleCNN model.
 
+
+## Model Training
+
+### Training Configuration:
+
+- Loss Function: CrossEntropyLoss used for multi-class classification.
+
+- Optimizer: Adam optimizer employed with a learning rate of 0.00025.
+
+- Number of Epochs: The model is trained for 20 epochs.
+
+- Loss Tracking: Average training and validation losses are computed and stored for each epoch.
+
+### Interpretation:
+- The architecture is characterized by progressively increasing convolutional channels, promoting feature extraction.
+- Batch normalization enhances training stability, while dropout mitigates overfitting in fully connected layers.
+- Adam optimizer is chosen for its adaptive learning rate capabilities.
+- The model is trained over 20 epochs to optimize parameters and minimize the cross-entropy loss.
+- Training and validation losses are tracked for each epoch, providing insights into model convergence and generalization.
+
+![image](https://github.com/Pattern-Recog/Simple-convolutional-neural-network-to-perform-classification/assets/68577937/8238031e-bc2c-4043-9b31-3c6647fc734a)
+
+![image](https://github.com/Pattern-Recog/Simple-convolutional-neural-network-to-perform-classification/assets/68577937/71c8ba8e-e6e6-425c-8825-5bc97787fd3d)
+
+
+## Model Evaluation
+
+### Model Accuracy:
+The model accuracy is a metric indicating the proportion of correctly classified instances out of the total instances in the test dataset. In this case, the test accuracy is calculated using the following formula:
+
+![image](https://github.com/Pattern-Recog/Simple-convolutional-neural-network-to-perform-classification/assets/68577937/5d268a2c-f233-48b0-b8a3-c1bbf834f59f)
+Here, the accuracy is reported as 70.78%, suggesting that the model correctly classified approximately 70.78% of the samples in the test set.
+
+### Confusion Matrix:
+The confusion matrix is a table used for evaluating the performance of a classification model. It displays the counts of true positive, true negative, false positive, and false negative predictions. The matrix is structured as follows:
+
+![image](https://github.com/Pattern-Recog/Simple-convolutional-neural-network-to-perform-classification/assets/68577937/093c3b38-0b2e-4d94-8e1f-e51f16dceb29)
+
+- **True Positive (TP):** Instances that are actually positive and predicted as positive.
+- **False Positive (FP):** Instances that are actually negative but predicted as positive.
+- **False Negative (FN):** Instances that are actually positive but predicted as negative.
+- **True Negative (TN):** Instances that are actually negative and predicted as negative.
+
+The heatmap visualization in the code provides a clear overview of how well the model is performing across different classes.
+
+![image](https://github.com/Pattern-Recog/Simple-convolutional-neural-network-to-perform-classification/assets/68577937/f6d0a17d-1195-4887-9370-b922a36c6335)
+
+
+## With state-of-the-art networks
+- The primary goal is to leverage the knowledge encoded in pre-trained models (developed on large datasets like ImageNet) and adapt them to perform well on the CIFAR-10 dataset, a task known as transfer learning.
+
+- Each pre-trained model's classifier is modified to have the appropriate number of output units for CIFAR-10 (10 classes). The modified models are then fine-tuned on the CIFAR-10 dataset using the provided training and testing data splits.
+
+- Training and validation loss values are recorded for each epoch to monitor the training progress and potential overfitting.
+
+- After fine-tuning, the models are evaluated on the testing dataset to assess their performance.
 
 
 
