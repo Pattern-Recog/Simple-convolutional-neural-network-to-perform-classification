@@ -51,6 +51,88 @@ _
 
 The data pre-processing tasks, particularly normalization and dataset splitting, are crucial for ensuring that the model is trained on properly scaled inputs and evaluated on distinct subsets of data. Normalization helps in stabilizing training by ensuring that the input features are within a similar numerical range, while dataset splitting enables the model to generalize well by having separate sets for training, validation, and testing. Additionally, the use of data loaders enhances the efficiency of feeding batches of data during the training process.
 
+## CNN Architecture Overview
+![image](https://github.com/Pattern-Recog/Simple-convolutional-neural-network-to-perform-classification/assets/68577937/61069055-bb59-4e04-bb32-0ed4e42775b3)
+
+1. **Convolutional Layers:**
+  The CNN begins with three convolutional layers (conv1, conv2, conv3), each followed by batch normalization (bn1, bn2, bn3) and Rectified Linear Unit (ReLU) activation (relu1, relu2, relu3).
+  Each convolutional layer applies a 5x5 kernel with padding and a stride of 1 to capture spatial features in the input images.
+  The number of output channels for the convolutional layers gradually increases from x1 (32) to x2 (64) to x3 (128), controlling the complexity and abstraction of learned features.
+
+2. **Max Pooling Layers:**
+  After each convolutional layer, a max-pooling layer (maxpool1, maxpool2, maxpool3) with a 2x2 kernel and a stride of 2 is applied, reducing the spatial dimensions of the feature maps and providing translation invariance.
+
+3. **Fully Connected Layers:**
+  The flattened output from the last max-pooling layer is fed into a fully connected layer (fc1), followed by ReLU activation (relu4) and dropout (dropout) with a rate of d (0.5).
+  The output size of this fully connected layer is controlled by the parameter x4 (64).
+
+4. **Output Layer:**
+  The final layer (fc2) produces the output logits, which are passed through a softmax activation (softmax) to obtain class probabilities for the 10 classes in the CIFAR-10 dataset.
+
+
+### Convolutional Layers:
+
+  1. Convolutional Layer 1:
+    - Input: 3 channels (RGB)
+    - Output Channels: 32
+    - Kernel Size: 5x5
+    - Stride: 1, Padding: 2
+    - Batch Normalization and ReLU Activation
+  
+  2. Max Pooling Layer 1:
+    - Kernel Size: 2x2
+    - Stride: 2
+  
+  3. Convolutional Layer 2:
+    - Input Channels: 32
+    - Output Channels: 64
+    - Kernel Size: 5x5
+    - Stride: 1, Padding: 2
+    - Batch Normalization and ReLU Activation
+  
+  4. Max Pooling Layer 2:
+    - Kernel Size: 2x2
+    - Stride: 2
+  
+  5. Convolutional Layer 3:
+    - Input Channels: 64
+    - Output Channels: 128
+    - Kernel Size: 5x5
+    - Stride: 1, Padding: 2
+    - Batch Normalization and ReLU Activation
+  
+  6. Max Pooling Layer 3:
+    - Kernel Size: 2x2
+    - Stride: 2
+
+### Fully Connected Layers:
+
+  1. Flatten Layer:
+    - Flattens the output from the last convolutional layer.
+  
+  2. Fully Connected Layer 1:
+    - Input Features: 2048
+    - Output Features: 64
+    - ReLU Activation, Dropout with probability 0.5
+
+     
+### Output Layer:
+
+  1. Fully Connected Layer 2 (Output Layer):
+    - Input Features: 64
+    - Output Features: 10 (for 10 classes)
+    - SoftMax Activation for multiclass classification
+
+### Model Parameters:
+- Convolutional Layer 1: 2464 parameters
+- Convolutional Layer 2: 51328 parameters
+- Convolutional Layer 3: 205056 parameters
+- Fully Connected Layer 1: 131136 parameters
+- Output Layer: 650 parameters
+  
+The total number of learnable parameters in the entire CNN model is **390,634**. This summary provides an overview of the architectural choices and the parameterization of each layer in the SimpleCNN model.
+
+
 
 
 
