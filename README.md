@@ -74,34 +74,38 @@ The data pre-processing tasks, particularly normalization and dataset splitting,
 
   1. Convolutional Layer 1:
     - Input: 3 channels (RGB)
+     
     - Output Channels: 32
+    
     - Kernel Size: 5x5
+    
     - Stride: 1, Padding: 2
+    
     - Batch Normalization and ReLU Activation
   
-  2. Max Pooling Layer 1:
+  3. Max Pooling Layer 1:
     - Kernel Size: 2x2
     - Stride: 2
   
-  3. Convolutional Layer 2:
+  4. Convolutional Layer 2:
     - Input Channels: 32
     - Output Channels: 64
     - Kernel Size: 5x5
     - Stride: 1, Padding: 2
     - Batch Normalization and ReLU Activation
   
-  4. Max Pooling Layer 2:
+  5. Max Pooling Layer 2:
     - Kernel Size: 2x2
     - Stride: 2
   
-  5. Convolutional Layer 3:
+  6. Convolutional Layer 3:
     - Input Channels: 64
     - Output Channels: 128
     - Kernel Size: 5x5
     - Stride: 1, Padding: 2
     - Batch Normalization and ReLU Activation
   
-  6. Max Pooling Layer 3:
+  7. Max Pooling Layer 3:
     - Kernel Size: 2x2
     - Stride: 2
 
